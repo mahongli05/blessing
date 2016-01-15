@@ -1,5 +1,6 @@
 package com.ma.blessing.db;
 
+import com.github.promeg.pinyinhelper.Pinyin;
 import com.ma.blessing.db.ContactImportUtil.ContactImportCallback;
 
 import android.content.ContentValues;
@@ -23,12 +24,14 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     public static final String CREATE_CONTECT_TABLE = "create table "
             + "contact"
-            + " (" + "_id" + " INTEGER PRIMARY KEY AUTOINCREMENT,"
-            + " name"    + " INTEGER, "
+            + " (" + " _id" + " INTEGER PRIMARY KEY AUTOINCREMENT,"
+            + " name"    + " TEXT, "
             + " contact_id"    + " TEXT,"
+            + " chars"    + " TEXT,"
+            + " photo"    + " BLOB,"
             + " preferred_phone"    + " TEXT,"
             + " preferred_email"    + " TEXT"
-            + " unique (contact_id)"
+
             + " );";
 
     public static final String CREATE_PHONE_TABLE = "create table "
@@ -63,8 +66,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             + " (" + "_id" + " INTEGER PRIMARY KEY AUTOINCREMENT,"
             + " content"    + " TEXT,"
             + " name"    + " TEXT,"
-            + " phone"    + " TEXT,"
-            + " group"    + " INTEGER,"
+            + " phone"    + " TEXT, "
+            + " group_id"    + " INTEGER, "
             + " type"    + " INTEGER,"
             + " time"    + " INTEGER NOT NULL"
             + " );";
@@ -127,15 +130,13 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 String id = data.getString(ContactImportUtil.DATA_CONTACT_ID);
                 String[] phones = data.getStringArray(ContactImportUtil.DATA_CONTACT_PHONE);
                 String[] emails = data.getStringArray(ContactImportUtil.DATA_CONTACT_EMAIL);
+                byte[] photo = data.getByteArray(ContactImportUtil.DATA_CONTACT_PHOTO);
 
                 if (!TextUtils.isEmpty(id)) {
-                    ContentValues values = new ContentValues();
-                    values.put(Columns.CONTACT_NAME, name);
-                    values.put(Columns.CONTACT_ID, id);
-                    db.insert("contact", null, values);
 
+                    ContentValues values = new ContentValues();
+                    values.put(Columns.CONTACT_ID, id);
                     if (phones != null) {
-                        values.remove(Columns.CONTACT_NAME);
                         for (String phone : phones) {
                             values.put(Columns.CONTACT_PHONE, phone);
                             db.insert("phone", null, values);
@@ -149,6 +150,26 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                             db.insert("email", null, values);
                         }
                     }
+
+                    if (phones != null && phones.length > 0) {
+                        values.put(Columns.CONTACT_PREFERRED_PHONE, phones[0]);
+                    }
+
+                    if (emails != null && emails.length > 0) {
+                        values.put(Columns.CONTACT_PREFFERED_EMAIL, emails[0]);
+                    }
+
+                    char[] chars = name.toCharArray();
+                    StringBuilder builder = new StringBuilder();
+                    for (char c : chars) {
+                        builder.append(Pinyin.toPinyin(c));
+                    }
+
+                    values.put(Columns.CONTACT_CHARS, builder.toString());
+                    values.put(Columns.CONTACT_NAME, name);
+                    values.put(Columns.CONTACT_PHOTO, photo);
+                    db.insert("contact", null, values);
+                    values.remove(Columns.CONTACT_PHOTO);
                 }
             }
 

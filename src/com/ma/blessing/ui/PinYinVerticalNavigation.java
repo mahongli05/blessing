@@ -12,9 +12,9 @@ public class PinYinVerticalNavigation extends View {
 
     private static final float TEXT_HEIGHT_RATE = 0.8f;
 
-    private static final String[] CHARS = { "A", "B", "C", "D", "E", "F", "G",
+    public static final String[] CHARS = {".", "A", "B", "C", "D", "E", "F", "G",
             "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T",
-            "U", "V", "W", "X", "Y", "Z" };
+            "U", "V", "W", "X", "Y", "Z" , "#"};
 
     private Paint mPaint;
     private float mTextSize;
@@ -111,7 +111,7 @@ public class PinYinVerticalNavigation extends View {
         float validY = y - getPaddingTop();
         float validH = getHeight() - getPaddingBottom() - getPaddingTop();
         int position = (int) ((validY / validH) * (float) CHARS.length);// //获取具体按下哪个字母
-        if (position < 0 || position > CHARS.length) {
+        if (position < 0 || position >= CHARS.length) {
             return null;
         }
         return CHARS[position];
