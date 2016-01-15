@@ -116,7 +116,7 @@ public class ContactPage extends FrameLayout implements NavigationListener {
             if (convertView instanceof ContactItemView) {
                 Contact contact = mContacts.get(position);
                 String head = contact.nameAsChar.substring(0, 1);
-                int otherStart = mNavigationMap.get(TAIL_CHAR);
+                Integer otherStart = mNavigationMap.get(TAIL_CHAR);
                 if (position > otherStart) {
                     head = null;
                 } else if (position == otherStart) {
@@ -138,6 +138,8 @@ public class ContactPage extends FrameLayout implements NavigationListener {
     private static final int OFFSET = MAX_NORMAL_CHAR.compareTo(MIN_NORMAL_CHAR);
 
     private class LoadTask extends AsyncTask<Void, Void, List<Contact>> {
+
+        private Map<String, Integer> mTempMap = new HashMap<>();
 
         @Override
         protected List<Contact> doInBackground(Void... params) {
@@ -167,11 +169,9 @@ public class ContactPage extends FrameLayout implements NavigationListener {
                     }
                 }
 
-                mNavigationMap.put(HEAD_CHAR, 0);
-                if (trailList.size() > 0) {
-                    mNavigationMap.put(TAIL_CHAR, contacts.size());
-                    contacts.addAll(trailList);
-                }
+                mTempMap.put(HEAD_CHAR, 0);
+                mTempMap.put(TAIL_CHAR, contacts.size());
+                contacts.addAll(trailList);
             } catch (Exception e) {
                 e.printStackTrace();
             } finally {
@@ -183,8 +183,8 @@ public class ContactPage extends FrameLayout implements NavigationListener {
         private String updateNavigationMap(Contact contact, int position) {
             if (!TextUtils.isEmpty(contact.nameAsChar)) {
                 String head = contact.nameAsChar.substring(0, 1);
-                if (!mNavigationMap.containsKey(head)) {
-                    mNavigationMap.put(head, position);
+                if (!mTempMap.containsKey(head)) {
+                    mTempMap.put(head, position);
                 }
                 return head;
             }
@@ -193,6 +193,7 @@ public class ContactPage extends FrameLayout implements NavigationListener {
 
         @Override
         protected void onPostExecute(List<Contact> contacts) {
+            mNavigationMap = mTempMap;
             mAdapter.mContacts = contacts;
             mAdapter.notifyDataSetChanged();
         }

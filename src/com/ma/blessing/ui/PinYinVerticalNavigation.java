@@ -4,6 +4,7 @@ import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
+import android.text.TextUtils;
 import android.util.AttributeSet;
 import android.view.MotionEvent;
 import android.view.View;
@@ -93,7 +94,7 @@ public class PinYinVerticalNavigation extends View {
             }
             break;
         case MotionEvent.ACTION_MOVE: {// 当类型为移动
-            if (mListener != null && !currentChar.equals(mCurrentChar)) {
+            if (mListener != null && !TextUtils.equals(currentChar, mCurrentChar)) {
                 mListener.onNavigationChanged(currentChar);
             }
             break;
