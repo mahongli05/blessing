@@ -67,8 +67,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             + " content"    + " TEXT,"
             + " name"    + " TEXT,"
             + " phone"    + " TEXT, "
-            + " group_id"    + " INTEGER, "
-            + " type"    + " INTEGER,"
+            + " status"    + " INTEGER,"
             + " time"    + " INTEGER NOT NULL"
             + " );";
 

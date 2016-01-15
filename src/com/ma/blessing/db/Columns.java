@@ -26,7 +26,7 @@ public class Columns {
 
     public static final String CONTACT_TIME = "time";
 
-    public static final String CONTACT_GROUP_ID = "group";
+    public static final String CONTACT_STATUS = "status";
 
     public static final String CONTACT_PHOTO = "photo";
 
