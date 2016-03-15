@@ -1,23 +1,24 @@
 package com.ma.blessing.ui;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 import com.ma.blessing.R;
-import com.ma.blessing.data.Contact;
+import com.ma.blessing.data.HistoryItem;
 
 import android.content.Context;
 import android.util.AttributeSet;
-import android.view.View;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 public class HistoryItemView extends RelativeLayout {
 
-    private ImageView mPictureView;
-    private ImageView mTipsView;
-    private TextView mTitleView;
-    private TextView mSubTitleView;
+    private ImageView mAvatarView;
+    private TextView mNameView;
+    private TextView mPhoneView;
+    private TextView mTimeView;
     private TextView mMessageView;
-
 
     public HistoryItemView(Context context) {
         this(context, null);
@@ -33,41 +34,24 @@ public class HistoryItemView extends RelativeLayout {
     }
 
     private void setupView(Context context) {
-        inflate(context, R.layout.contact_item, this);
-        mPictureView = (ImageView) findViewById(R.id.picture);
-        mTipsView = (ImageView) findViewById(R.id.tips);
-        mTitleView = (TextView) findViewById(R.id.title);
-        mSubTitleView = (TextView) findViewById(R.id.sub_title);
-        mMessageView = (TextView) findViewById(R.id.message);
+        inflate(context, R.layout.send_history_item, this);
+        mAvatarView = (ImageView) findViewById(R.id.avatar);
+        mNameView = (TextView) findViewById(R.id.name);
+        mPhoneView = (TextView) findViewById(R.id.phone);
+        mTimeView = (TextView) findViewById(R.id.time);
+        mMessageView = (TextView) findViewById(R.id.detail);
     }
 
-    public void setPicture(int pictureId) {
-        mPictureView.setImageDrawable(getResources().getDrawable(pictureId));
-    }
-
-    public void setTitle(int titleId) {
-        mTitleView.setText(titleId);
-    }
-
-    public void setSubTitle(int subtitleId) {
-        mSubTitleView.setText(subtitleId);
-    }
-
-    public void showTips() {
-        mTipsView.setVisibility(View.VISIBLE);
-    }
-
-    public void hidTips() {
-        mTipsView.setVisibility(View.INVISIBLE);
-    }
-
-    public void bindView(Contact contact, String message) {
-
-        mTitleView.setText(contact.name);
-        mSubTitleView.setText(contact.preferredPhone);
-        mMessageView.setText(message);
-        if (contact.photo != null) {
-            mPictureView.setImageBitmap(contact.photo);
+    public void bindView(HistoryItem item, SimpleDateFormat format) {
+        if (item.phone != null) {
+            mAvatarView.setImageBitmap(item.photo);
         }
+        mNameView.setText(item.name);
+        mMessageView.setText(item.content);
+        if (item.sendTime != 0) {
+            Date date = new Date(item.sendTime);
+            mTimeView.setText(format.format(date));
+        }
+        mPhoneView.setText(item.phone);
     }
 }

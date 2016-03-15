@@ -38,6 +38,8 @@
         </receiver>
 
         <activity android:name="org.kymjs.chat.ChatActivity"/>
+        <activity android:name="com.ma.blessing.HistoryActivity"/>
+        <activity android:name="com.ma.blessing.SearchActivity"/>
     </application>
 
 </manifest>

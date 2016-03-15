@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/category_container"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#ffffff" >
+
+    <TextView
+        android:id="@+id/edit"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/item_height"
+        android:layout_alignParentLeft="true"
+        android:layout_marginLeft="@dimen/content_horizontal_margin"
+        android:drawableLeft="@drawable/emoji_0030"
+        android:drawablePadding="18dp"
+        android:gravity="center_vertical|left"
+        android:text="@string/edit_to_send"
+        android:textColor="@color/text_black_color"
+        android:textSize="16sp" />
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="@dimen/item_height"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="@dimen/content_horizontal_margin"
+        android:scaleType="center"
+        android:src="@drawable/icon_arrow_right" />
+
+    <View
+        android:id="@+id/divider_1"
+        android:layout_width="match_parent"
+        android:layout_height="12dp"
+        android:layout_below="@id/edit"
+        android:background="#f8f8f8" />
+
+    <TextView
+        android:id="@+id/pending"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/item_height"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@id/divider_1"
+        android:layout_marginLeft="@dimen/content_horizontal_margin"
+        android:drawableLeft="@drawable/emoji_0030"
+        android:drawablePadding="18dp"
+        android:gravity="center_vertical|left"
+        android:text="@string/pending_to_send"
+        android:textColor="@color/text_black_color"
+        android:textSize="16sp" />
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="@dimen/item_height"
+        android:layout_alignParentRight="true"
+        android:layout_below="@id/divider_1"
+        android:layout_marginRight="@dimen/content_horizontal_margin"
+        android:scaleType="center"
+        android:src="@drawable/icon_arrow_right" />
+
+    <View
+        android:id="@+id/divider_2"
+        android:layout_width="match_parent"
+        android:layout_height="12dp"
+        android:layout_below="@id/pending"
+        android:background="#f8f8f8" />
+
+    <TextView
+        android:id="@+id/send_success"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/item_height"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@id/divider_2"
+        android:layout_marginLeft="@dimen/content_horizontal_margin"
+        android:drawableLeft="@drawable/emoji_0030"
+        android:drawablePadding="18dp"
+        android:gravity="center_vertical|left"
+        android:text="@string/send_success_history"
+        android:textColor="@color/text_black_color"
+        android:textSize="16sp" />
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="@dimen/item_height"
+        android:layout_alignParentRight="true"
+        android:layout_below="@id/divider_2"
+        android:layout_marginRight="@dimen/content_horizontal_margin"
+        android:scaleType="center"
+        android:src="@drawable/icon_arrow_right" />
+
+    <View
+        android:id="@+id/divider_3"
+        android:layout_width="match_parent"
+        android:layout_height="12dp"
+        android:layout_below="@id/send_success"
+        android:background="#f8f8f8" />
+
+    <TextView
+        android:id="@+id/send_fail"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/item_height"
+        android:layout_alignParentLeft="true"
+        android:layout_marginLeft="@dimen/content_horizontal_margin"
+        android:drawableLeft="@drawable/emoji_0030"
+        android:drawablePadding="18dp"
+        android:layout_below="@id/divider_3"
+        android:gravity="center_vertical|left"
+        android:text="@string/send_failed_history"
+        android:textColor="@color/text_black_color"
+        android:textSize="16sp" />
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="@dimen/item_height"
+        android:layout_alignParentRight="true"
+        android:layout_below="@id/divider_3"
+        android:layout_marginRight="@dimen/content_horizontal_margin"
+        android:scaleType="center"
+        android:src="@drawable/icon_arrow_right" />
+
+    <View
+        android:id="@+id/stub"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/send_fail"
+        android:background="#f8f8f8" />
+
+</RelativeLayout>

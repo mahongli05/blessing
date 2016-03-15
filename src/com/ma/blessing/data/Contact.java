@@ -1,5 +1,6 @@
 package com.ma.blessing.data;
 
+import java.io.Serializable;
 import java.util.List;
 
 import com.ma.blessing.db.Columns;
@@ -8,7 +9,9 @@ import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 
-public class Contact {
+public class Contact implements Serializable {
+
+    private static final long serialVersionUID = 201601291709L;
 
     public String id;
     public String name;

@@ -65,10 +65,10 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             + "send_history"
             + " (" + "_id" + " INTEGER PRIMARY KEY AUTOINCREMENT,"
             + " content"    + " TEXT,"
-            + " name"    + " TEXT,"
-            + " phone"    + " TEXT, "
+            + " contact_id"    + " TEXT,"
             + " status"    + " INTEGER,"
-            + " time"    + " INTEGER NOT NULL"
+            + " send_time"    + " INTEGER,"
+            + " update_time"    + " INTEGER NOT NULL"
             + " );";
 
     private static DatabaseHelper sInsctance;

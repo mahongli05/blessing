@@ -18,6 +18,7 @@ public class ContactItemView extends RelativeLayout {
     private TextView mTitleView;
     private TextView mSubTitleView;
     private TextView mHeadView;
+    private View mTopDivider;
 
     public ContactItemView(Context context) {
         this(context, null);
@@ -39,6 +40,7 @@ public class ContactItemView extends RelativeLayout {
         mTitleView = (TextView) findViewById(R.id.title);
         mSubTitleView = (TextView) findViewById(R.id.sub_title);
         mHeadView = (TextView) findViewById(R.id.head);
+        mTopDivider = findViewById(R.id.top_divider);
     }
 
     public void setPicture(int pictureId) {
@@ -61,7 +63,7 @@ public class ContactItemView extends RelativeLayout {
         mTipsView.setVisibility(View.INVISIBLE);
     }
 
-    public void bindView(Contact contact, String head) {
+    public void bindView(Contact contact, String head, boolean showDivider) {
 
         mTitleView.setText(contact.name);
         mSubTitleView.setText(contact.preferredPhone);
@@ -74,6 +76,12 @@ public class ContactItemView extends RelativeLayout {
         } else {
             mHeadView.setVisibility(VISIBLE);
             mHeadView.setText(head);
+        }
+
+        if (showDivider) {
+            mTopDivider.setVisibility(VISIBLE);
+        } else {
+            mTopDivider.setVisibility(GONE);
         }
     }
 }

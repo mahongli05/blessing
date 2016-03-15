@@ -56,6 +56,7 @@ public class ContactPage extends FrameLayout implements NavigationListener {
 
         mAdapter = new ContactAdapter();
         mListView.setAdapter(mAdapter);
+        mListView.setDividerHeight(0);
 
         new LoadTask().execute();
     }
@@ -124,7 +125,7 @@ public class ContactPage extends FrameLayout implements NavigationListener {
                 } else {
                     head = mNavigationMap.get(head) == position ? head : null;
                 }
-                ((ContactItemView) convertView).bindView(mContacts.get(position), head);
+                ((ContactItemView) convertView).bindView(mContacts.get(position), head, TextUtils.isEmpty(head));
             }
 
             return convertView;

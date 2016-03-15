@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="edit_to_send">编辑记录</string>
+    <string name="pending_to_send">等待发送</string>
+    <string name="send_success_history">发送成功记录</string>
+    <string name="send_failed_history">发送失败记录</string>
+
+    <string name="empty_list">没有记录</string>
+    <string name="blessing">送祝福</string>
+
+    <string name="blessing_message">祝福语</string>
+    <string name="contact">联系人</string>
+    <string name="history">记录</string>
+    <string name="me">我</string>
+</resources>
